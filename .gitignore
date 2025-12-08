@@ -1,0 +1,177 @@
+###############################
+# 🚀 PYTHON & STREAMLIT PROJECT
+###############################
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+env/
+.venv/
+.VENV/
+ENV/
+
+# Streamlit cache
+.streamlit/
+.streamlit/secrets.toml
+
+# Local configuration files
+*.env
+*.env.local
+*.env.production
+secrets.json
+config.json
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logging + temp files
+logs/
+*.log
+*.tmp
+temp/
+tmp/
+*.pid
+
+###############################
+# 📦 DEPENDENCIES
+###############################
+
+# Pip / Poetry / Pipenv
+pip-wheel-metadata/
+poetry.lock
+Pipfile.lock
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+###############################
+# 📁 DATA & SENSITIVE FILES
+###############################
+
+# Provider CSV & sensitive data
+data/*.csv
+data/*.xlsx
+data/*.xls
+data/*.json
+data/**/*.csv
+
+# Provider PDFs & documents
+data/provider_docs/*.pdf
+data/provider_docs/**/*.pdf
+
+# Output files
+data/final_results.csv
+data/batch_output.csv
+output/
+exports/
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+provider_system.db
+
+###############################
+# 🎨 FRONTEND / UI ASSETS
+###############################
+
+# Node / npm
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build folders
+build/
+public/build/
+dist/
+*.map
+
+###############################
+# 🧠 ML / AGENTIC / MODEL FILES
+###############################
+
+# Model checkpoints
+checkpoints/
+*.h5
+*.ckpt
+*.pth
+*.pt
+*.joblib
+*.pkl
+models/*
+agents/cache/
+
+# LangChain caches
+.lc/
+.cache/
+langchain_cache/
+
+###############################
+# 💻 IDE / OS FILES
+###############################
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+###############################
+# 📦 ZIP / ARCHIVES
+###############################
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+###############################
+# ⛔ SECURITY PROTECTION
+###############################
+
+# API keys & credentials
+api_keys.txt
+keys.txt
+*.key
+*.pem
+*.crt
+*.p12
+token.txt
+credentials/
+auth/
+
+###############################
+# 📝 PROJECT SPECIFIC
+###############################
+
+# Test artifacts
+test_output/
+test_results/
+test_runs/
+
+# Streamlit uploaded files
+uploaded_files/
+uploads/
+
+# Reports
+reports/*.pdf
+reports/*.docx
+reports/*.xlsx
