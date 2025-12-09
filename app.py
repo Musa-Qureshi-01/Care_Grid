@@ -251,41 +251,41 @@ def render_home():
 
     col1, col2, col3, col4 = st.columns(4)
 
-    ppt_path = "assets/EY_Projeect_Case Study.pdf"
-    srf_path = "assets/EY_Projeect_SRS.pdf"
-    cs_path = "https://shorturl.at/pRUj5"
-    extra_path = "assets/extra_doc.pdf"
+    import os
 
-    def view_button(label, path):
-        return f"""<a href="{path}" target="_blank" class="view-button">{label}</a>"""
+    ppt_path = "assets/EY_presentation.pptx"
+    srf_path = "assets/EY_Project_SRS.pdf"
+    cs_path = "assets/EY_Project_Case Study.pdf"
+    extra_path = "assets/extra_doc.pdf"
 
     with col1:
         if os.path.exists(ppt_path):
-            st.markdown(view_button("📊 View PPT", ppt_path), unsafe_allow_html=True)
+            with open(ppt_path, "rb") as f:
+                st.download_button("📊 View PPT", f, file_name="EY_presentation.pptx")
         else:
-            st.markdown("<button class='neon-button'>📊 PPT Slides (add file)</button>",
-                        unsafe_allow_html=True)
+            st.button("📊 PPT Slides (add file)")
 
     with col2:
         if os.path.exists(srf_path):
-            st.markdown(view_button("📘 View SRS", srf_path), unsafe_allow_html=True)
+            with open(srf_path, "rb") as f:
+                st.download_button("📘 View SRS", f, file_name="EY_Project_SRS.pdf")
         else:
-            st.markdown("<button class='neon-button'>📘 SRF Document (add file)</button>",
-                        unsafe_allow_html=True)
+            st.button("📘 SRF Document (add file)")
 
     with col3:
         if os.path.exists(cs_path):
-            st.markdown(view_button("📑 View Case Study", cs_path), unsafe_allow_html=True)
+            with open(cs_path, "rb") as f:
+                st.download_button("📑 View Case Study", f, file_name="EY_Project_CaseStudy.pdf")
         else:
-            st.markdown("<button class='neon-button'>📑 Case Study (add file)</button>",
-                        unsafe_allow_html=True)
+            st.button("📑 Case Study (add file)")
 
     with col4:
         if os.path.exists(extra_path):
-            st.markdown(view_button("📁 View Extra Material", extra_path), unsafe_allow_html=True)
+            with open(extra_path, "rb") as f:
+                st.download_button("📁 View Extra Material", f, file_name="Extra_Material.pdf")
         else:
-            st.markdown("<button class='neon-button'> Extra Material (add file)</button>",
-                        unsafe_allow_html=True)
+            st.button("📁 Extra Material (add file)")
+
 
     st.markdown("<br><h3> Architecture at a Glance</h3>", unsafe_allow_html=True)
 
