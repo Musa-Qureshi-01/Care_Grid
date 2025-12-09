@@ -22,7 +22,8 @@ pdfminer.six
 
 requests
 urllib3
-reportlab==4.0.9
+--pre
+reportlab>=4.0.0
 beautifulsoup4==4.12.3
 # force rebuild
 six==1.16.0
