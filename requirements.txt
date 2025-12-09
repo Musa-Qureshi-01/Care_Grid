@@ -1,37 +1,29 @@
-python_version < "3.13"
-# ===== Core Python & Data =====
-pandas==2.2.0
-numpy==1.26.4
-python-dateutil==2.9.0.post0
+pandas
+numpy
+python-dateutil
 
-# ===== Streamlit UI =====
-streamlit==1.39.0
-streamlit-option-menu==0.3.6
-altair==5.3.0
-pydeck==0.9.1
-matplotlib==3.9.0
-plotly==5.24.1
+streamlit
+streamlit-option-menu
+altair
+pydeck
+matplotlib
+plotly
 
-# ===== LangChain Ecosystem =====
-langchain==0.2.15
-langchain-core==0.2.36
-langchain-community==0.2.10
-langchain-openai==0.1.25
-langsmith==0.1.76
-tiktoken==0.7.0
+langchain
+langchain-core
+langchain-community
+langchain-openai
+tiktoken
+langsmith
 
-# ===== PDF Parsing =====
-pymupdf==1.24.10
-pypdf==4.2.0
-pdfminer.six==20231228
+pymupdf
+pypdf
+pdfminer.six
 
-# ===== HTTP & API =====
-requests==2.32.3
-urllib3==2.2.2
+requests
+urllib3
 
-# ===== Database =====
-sqlalchemy==2.0.31
+sqlalchemy
 
-# ===== Utils =====
-python-dotenv==1.0.1
-tabulate==0.9.0
+python-dotenv
+tabulate
