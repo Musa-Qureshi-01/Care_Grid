@@ -13,8 +13,8 @@ langchain
 langchain-core
 langchain-community
 langchain-openai
-tiktoken
 langsmith
+tiktoken
 
 pymupdf
 pypdf
