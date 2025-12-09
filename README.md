@@ -176,7 +176,7 @@ EY-Provider-Agent/
 
 ```bash
 git clone https://github.com/Musa-Qureshi-01/EY_Provider_Agent.git
-cd EY_Provider_Agent
+cd Healthcare_MultiAgent
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -207,7 +207,7 @@ streamlit run app.py
 
 <hr>
 
-<h2 style="font-size:30px;">🛡 Compliance & Security</h2>
+<h2 style="font-size:30px;">Compliance & Security</h2>
 
 <p>Our system is designed to follow secure data-handling and compliance-friendly workflows:</p>
 
