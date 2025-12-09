@@ -22,6 +22,7 @@ pdfminer.six
 
 requests
 urllib3
+beautifulsoup4   ← REQUIRED
 
 sqlalchemy
 
