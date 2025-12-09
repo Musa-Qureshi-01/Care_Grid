@@ -22,8 +22,11 @@ pdfminer.six
 
 requests
 urllib3
-beautifulsoup4==4.12.3
 reportlab==4.0.9
+beautifulsoup4==4.12.3
+# force rebuild
+six==1.16.0
+
 
 sqlalchemy
 
