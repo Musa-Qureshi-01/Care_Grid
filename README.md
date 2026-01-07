@@ -328,7 +328,7 @@ It helps improve visibility during the EY Techathon and motivates further develo
 <p>For queries, suggestions, or collaboration:</p>
 
 <ul style="font-size:18px;">
-  <li><b>Email:</b> musaqureshi788code@gmail.com</li>
+  <li><b>Email:</b> musaqureshi788code@gmail.com / musaqureshi0000@gmail.com</li>
   <li><b>LinkedIn:</b> <a href="https://linkedin.com/in/musa-qureshi">linkedin.com/in/musa-qureshi</a></li>
 </ul>
 
