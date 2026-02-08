@@ -335,4 +335,3 @@ It helps improve visibility during the EY Techathon and motivates further develo
 <div align="center">
   <h3 style="margin-top:30px;">Made with ❤️ by Team Semantic Coders</h3>
 </div>
-
