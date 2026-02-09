@@ -6,18 +6,11 @@ Healthcare payers face high operational costs and compliance risks due to incorr
 
 This results in **Claim Denials**, **Poor Member Experience**, **Network Adequacy Issues**, and **Heavy Manual Verification Costs**.
 
-<hr>
-### 🚀 Deployment Links
+---
+> ## [Preview](https://care-grid.vercel.app/)
+---
 
-- **Main Dashboard (Vercel):** [care-grid.vercel.app](https://care-grid.vercel.app)
-- **Backup Dashboard (Netlify):** [storied-moonbeam-6492d2.netlify.app](https://storied-moonbeam-6492d2.netlify.app)
-- **Live Preview (Streamlit):** [healthcare-x-multi-agent.streamlit.app](https://healthcare-x-multi-agent.streamlit.app/)
-
-> [!IMPORTANT]
-> Ensure all environment variables (Clerk, Google Maps, Gemini) are configured in the deployment dashboard for full functionality.
-
-<hr>
-<h2 style="font-size:30px;">4-Agent Semantic AI System</h2>
+<h2 style="font-size:30px;">MultiAgent System</h2>
 
 | Agent | Role |
 | :--- | :--- |
@@ -195,5 +188,5 @@ It helps improve visibility and motivates further development!</p>
 </ul>
 
 <div align="center">
-  <h3 style="margin-top:30px;">Made with ❤️ by Team Semantic Coders</h3>
+  <h3 style="margin-top:30px;">Made with ❤️ by Musa Qureshi</h3>
 </div>
