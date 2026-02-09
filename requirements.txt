@@ -1,5 +1,6 @@
 --pre
 
+python==3.11
 pandas
 numpy
 python-dateutil
