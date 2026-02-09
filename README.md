@@ -1,6 +1,6 @@
 # CareGrid Provider Intelligence Platform
 
-## 🏥 Overview
+##  Overview
 
 Healthcare payers face high operational costs and compliance risks due to incorrect provider information like outdated addresses, invalid phone numbers, expired licenses, or inaccurate specialties.
 
