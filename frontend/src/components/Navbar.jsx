@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom"
 import { ShieldCheck, LayoutDashboard, Menu, X, ChevronRight } from "lucide-react"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "./ui/Button"
+import { Button } from "./ui/button"
 import { cn } from "../lib/utils"
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react"
 

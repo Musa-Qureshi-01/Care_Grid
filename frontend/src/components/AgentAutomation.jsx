@@ -4,8 +4,8 @@ import {
     Play, CheckCircle, XCircle, Loader2, AlertTriangle, Download, Send,
     ShieldCheck, Database, Activity, FileText, Mail, Pause
 } from 'lucide-react'
-import { Button } from './ui/Button'
-import { Card } from './ui/Card'
+import { Button } from './ui/button'
+import { Card } from './ui/card'
 import { api } from '../services/api'
 
 export function AgentAutomation() {

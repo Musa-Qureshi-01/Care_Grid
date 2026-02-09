@@ -5,8 +5,8 @@ import {
     User, Building, CreditCard, MapPin, ChevronDown, Sparkles, AlertTriangle,
     GraduationCap, Award, Building2, Shield, XCircle
 } from "lucide-react"
-import { Button } from "./ui/Button"
-import { Card } from "./ui/Card"
+import { Button } from "./ui/button"
+import { Card } from "./ui/card"
 import { api } from "../services/api"
 import { Skeleton } from "./ui/skeleton"
 

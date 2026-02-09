@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import { ArrowRight, ChevronRight, Play } from "lucide-react"
-import { Button } from "./ui/Button"
+import { Button } from "./ui/button"
 
 export function Hero() {
     return (

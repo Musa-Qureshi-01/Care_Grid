@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { LoadingAnimation, InlineLoader, SkeletonLoader } from '../components/LoadingAnimation'
 import { Navbar } from '../components/Navbar'
-import { Button } from '../components/ui/Button'
+import { Button } from '../components/ui/button'
 import { Loader2, Sparkles, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 

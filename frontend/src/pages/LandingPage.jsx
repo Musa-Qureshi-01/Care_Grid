@@ -2,8 +2,8 @@
 import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Quote, Star, Sparkles, Zap } from "lucide-react"
-import { Button } from "../components/ui/Button"
-import { Card, CardContent } from "../components/ui/Card"
+import { Button } from "../components/ui/button"
+import { Card, CardContent } from "../components/ui/card"
 import { AgentCard } from "../components/AgentCard"
 
 // Atomic Components

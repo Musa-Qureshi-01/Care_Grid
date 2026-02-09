@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Send, MapPin, Phone, Mail, ArrowRight, Check, User } from "lucide-react"
-import { Button } from "../components/ui/Button"
-import { Card } from "../components/ui/Card"
+import { Button } from "../components/ui/button"
+import { Card } from "../components/ui/card"
 import { useState } from "react"
 import { useToast } from "../context/ToastContext"
 

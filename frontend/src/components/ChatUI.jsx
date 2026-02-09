@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Send, User, Bot, Loader2, Sparkles, AlertCircle } from "lucide-react"
-import { Button } from "./ui/Button"
+import { Button } from "./ui/button"
 import { cn } from "../lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 

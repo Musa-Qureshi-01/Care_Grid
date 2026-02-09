@@ -1,6 +1,6 @@
 import { Activity, Lock, Users, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
-import { Card, CardContent } from "./ui/Card"
+import { Card, CardContent } from "./ui/card"
 
 export function FeatureCards() {
     const features = [

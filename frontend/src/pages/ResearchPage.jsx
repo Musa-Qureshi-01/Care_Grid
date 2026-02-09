@@ -14,7 +14,7 @@ import {
     Globe,
     Brain
 } from "lucide-react"
-import { Button } from "../components/ui/Button"
+import { Button } from "../components/ui/button"
 import { Navbar } from "../components/Navbar"
 import { cn } from "../lib/utils"
 

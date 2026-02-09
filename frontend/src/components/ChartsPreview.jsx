@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { CheckCircle, AlertTriangle, Zap, Activity, Loader2 } from "lucide-react"
-import { Button } from "./ui/Button"
+import { Button } from "./ui/button"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { api } from "../services/api"
 import { useState, useEffect } from "react"
