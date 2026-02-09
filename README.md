@@ -110,32 +110,6 @@ The application will be available at:
 
 <hr>
 
-<h2 style="font-size:30px;">Team — Semantic Coders</h2>
-
-<table style="width:100%; font-size:18px;">
-  <tr>
-    <th>Member</th>
-    <th>Role</th>
-  </tr>
-  <tr>
-    <td>Muskan Kawadkar</td>
-    <td>Team Lead & Presenter</td>
-  </tr>
-  <tr>
-    <td>Musa Qureshi</td>
-    <td>Lead Agentic AI & Backend Developer</td>
-  </tr>
-  <tr>
-    <td>Parag Tiwari</td>
-    <td>Research & Quality Assurance Lead</td>
-  </tr>
-  <tr>
-    <td>Shruti Mehra</td>
-    <td>UI/UX Designer</td>
-  </tr>
-</table>
-
-<hr>
 
 <h2 style="font-size:30px;">Project Documentation</h2>
 
@@ -149,12 +123,6 @@ All documents are stored inside the <code>/docs</code> directory for easy naviga
 
 <ul style="font-size:18px; line-height:1.6;">
 
-  <li>
-    <a href="docs/EY_Presentation.pdf">
-      <b>EY Presentation</b>
-    </a> 
-    – Complete pitch deck used during EY Techathon 2025.
-  </li>
 
   <li>
     <a href="docs/Case_Study.pdf">
@@ -206,7 +174,7 @@ git push origin feature/new-feature
 <h2 style="font-size:30px;">⭐ Support</h2>
 
 <p>If you find this project useful, consider giving it a <b>⭐ Star</b>.  
-It helps improve visibility during the EY Techathon and motivates further development!</p>
+It helps improve visibility and motivates further development!</p>
 
 <hr>
 
