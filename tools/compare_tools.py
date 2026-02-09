@@ -75,9 +75,18 @@ def compare_data(provider: dict, google_data: dict, npi_data: dict) -> dict:
     phone_sim = _similarity(p_phone, g_phone)
     addr_sim = _similarity(p_addr, g_addr)
 
-    phone_match = bool(p_phone and g_phone and phone_sim >= 0.85)
-    address_match = bool(p_addr and g_addr and addr_sim >= 0.85)
-    specialty_match = bool(p_spec and npi_spec and p_spec.lower() == npi_spec.lower())
+    # RELAXED THRESHOLDS: Real-world data is messy. 0.7 is a good fuzzy match.
+    phone_match = bool(p_phone and g_phone and phone_sim >= 0.70)
+    address_match = bool(p_addr and g_addr and addr_sim >= 0.70)
+    
+    # Fuzzy specialty match
+    specialty_match = False
+    if p_spec and npi_spec:
+        # Check if one contains the other
+        if p_spec.lower() in npi_spec.lower() or npi_spec.lower() in p_spec.lower():
+            specialty_match = True
+        elif _similarity(p_spec.lower(), npi_spec.lower()) > 0.8:
+            specialty_match = True
 
     # corrected values – prefer google/NPI if high similarity
     corrected_phone = g_phone_raw if phone_sim >= 0.6 else None

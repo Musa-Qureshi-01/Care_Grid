@@ -47,9 +47,12 @@ def validation_agent(state):
         "specialty": specialty
     }
 
+    # Extract NPI if available in input/PDF
+    npi_input = provider.get("npi") or provider.get("pdf_npi")
+
     # STEP 2: Call validation APIs
     google_res = get_google_data(name, address)
-    npi_res = get_npi_data(name)
+    npi_res = get_npi_data(name, npi_id=npi_input)
 
     # STEP 3: Compare values
     validated = compare_data(cleaned_provider, google_res, npi_res)

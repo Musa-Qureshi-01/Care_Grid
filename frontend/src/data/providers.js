@@ -1,0 +1,22 @@
+export const providersData = [
+    { name: "Dr. Emily Cook", address: "3897 Oak Drive, PA", phone: "(549) 736-9965", specialty: "Gastroenterology", npi: "1112223331" },
+    { name: "Dr. Henry Wright", address: "5968 Pine St, FL", phone: "(480) 660-6800", specialty: "Cardiology", npi: "1112223332" },
+    { name: "Dr. Chloe Scott", address: "2957 Main St, FL", phone: "(429) 481-6247", specialty: "Pediatrics", npi: "1112223333" },
+    { name: "Dr. Olivia Bell", address: "2772 Maple Blvd, MI", phone: "(664) 227-4222", specialty: "Gastroenterology", npi: "1112223334" },
+    { name: "Dr. Amelia Perez", address: "9719 Main St, GA", phone: "(425) 636-2017", specialty: "Pediatrics", npi: "1112223335" },
+    { name: "Dr. Layla Young", address: "8729 Oak Drive, TX", phone: "(671) 471-1010", specialty: "Dermatology", npi: "1112223336" },
+    { name: "Dr. Isabella Reed", address: "9179 Maple Blvd, TX", phone: "(945) 323-2146", specialty: "Dermatology", npi: "1112223337" },
+    { name: "Dr. Zoe Rogers", address: "4546 Oak Drive, PA", phone: "(915) 791-5914", specialty: "Cardiology", npi: "1112223338" },
+    { name: "Dr. Alexander Gray", address: "1182 Elm St, MI", phone: "(214) 384-8831", specialty: "Oncology", npi: "1112223339" },
+    { name: "Dr. Sophia Hall", address: "1300 Elm St, NY", phone: "(928) 575-1843", specialty: "Dermatology", npi: "1112223340" },
+    { name: "Dr. Jack Miller", address: "7411 Oak Drive, CA", phone: "(763) 716-1851", specialty: "Cardiology", npi: "1112223341" },
+    { name: "Dr. Levi Baker", address: "5172 Oak Drive, GA", phone: "(967) 978-6582", specialty: "Cardiology", npi: "1112223342" },
+    { name: "Dr. David Morris", address: "3569 Elm St, FL", phone: "(496) 251-2494", specialty: "Endocrinology", npi: "1112223343" },
+    { name: "Dr. Levi Cox", address: "7539 Main St, CA", phone: "(698) 599-4656", specialty: "Cardiology", npi: "1112223344" },
+    { name: "Dr. Hannah Wright", address: "549 Main St, TX", phone: "(612) 607-3300", specialty: "Orthopedics", npi: "1112223345" },
+    { name: "Dr. Ella Scott", address: "4000 Main St, FL", phone: "(619) 945-7927", specialty: "Pediatrics", npi: "1112223346" },
+    { name: "Dr. Ethan Peterson", address: "3214 Oak Drive, IL", phone: "(523) 677-7322", specialty: "Psychiatry", npi: "1112223347" },
+    { name: "Dr. Daniel Torres", address: "3572 Maple Blvd, MI", phone: "(259) 954-4119", specialty: "Radiology", npi: "1112223348" },
+    { name: "Dr. Wyatt Thompson", address: "2424 Maple Blvd, PA", phone: "(816) 202-4859", specialty: "Radiology", npi: "1112223349" },
+    { name: "Dr. Aria Cook", address: "1309 Pine St, CA", phone: "(566) 908-6726", specialty: "Pediatrics", npi: "1112223350" }
+]

@@ -14,7 +14,7 @@ plotly
 langchain
 langchain-core
 langchain-community
-langchain-openai
+langchain-google-genai
 langsmith
 tiktoken
 
@@ -32,3 +32,8 @@ six==1.16.0
 sqlalchemy
 python-dotenv
 tabulate
+
+# Research Agent Dependencies
+wikipedia
+duckduckgo-search
+

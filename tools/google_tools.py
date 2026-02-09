@@ -1,69 +1,47 @@
-import random
-from tools.web_scraper import scrape_example_directory
+import re
+from langchain_community.tools import DuckDuckGoSearchRun
 
 def get_google_data(name: str, address: str) -> dict:
-    # existing synthetic / mock logic ...
-    google_result = {
-        "google_phone": "...",
-        "google_address": "...",
-        "google_name": name,
-    }
-
-    # 🔹 Add real scrape enrichment (non-blocking)
-    scraped = scrape_example_directory(name)
-    # Prefer real scraped values if present
-    if scraped.get("scraped_phone"):
-        google_result["google_phone"] = scraped["scraped_phone"]
-    if scraped.get("scraped_address"):
-        google_result["google_address"] = scraped["scraped_address"]
-
-    return google_result
-
-def get_google_data(name, address):
     """
-    Returns synthetic Google My Business validation data.
+    Returns Real-Time Web Verification data using DuckDuckGo.
+    Replaces static mocks with actual search results.
     """
-
-    phones = [
-        "(549) 736-9965", "(480) 660-6800", "(429) 481-6247",
-        "(664) 227-4222", "(425) 636-2017", "(671) 471-1010"
-    ]
-
-    street_suffixes = ["Drive", "St", "Ave", "Blvd"]
-    states = ["PA", "FL", "TX", "MI", "GA", "NY", "OH", "NC", "CA", "IL"]
-
-    scenarios = [
-        # 40% = perfect
-        {
-            "google_phone": random.choice(phones),
-            "google_address": address,
+    try:
+        search = DuckDuckGoSearchRun()
+        query = f"{name} {address} phone number address"
+        results = search.run(query)
+        
+        # Simple extraction logic (improvised for hackathon)
+        # Extract phone (US format)
+        phone_match = re.search(r'\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}', results)
+        found_phone = phone_match.group(0) if phone_match else None
+        
+        # Check if name/address appears in snippet
+        name_match = name.split()[-1] in results # Check last name
+        address_match = address.split()[0] in results if address else False
+        
+        match_type = "Live Web Verification"
+        reliability = 0.95
+        
+        if not name_match:
+            match_type = "Partial/Unverified"
+            reliability = 0.5
+            
+        return {
+            "google_phone": found_phone or "Not found in snippets",
+            "google_address": address if address_match else "Address not verified in top results", 
             "google_specialty": None,
-            "source_reliability": 0.9
-        },
-
-        # 30% = different address
-        {
-            "google_phone": random.choice(phones),
-            "google_address": f"{random.randint(1000,9000)} Oak {random.choice(street_suffixes)}, {random.choice(states)}",
-            "google_specialty": None,
-            "source_reliability": 0.75
-        },
-
-        # 20% missing phone
-        {
-            "google_phone": None,
-            "google_address": address,
-            "google_specialty": None,
-            "source_reliability": 0.5
-        },
-
-        # 10% = no result
-        {
+            "source_reliability": reliability,
+            "match_type": match_type,
+            "search_snippet": results[:200] + "..." # Context for UI
+        }
+        
+    except Exception as e:
+        print(f"Google Tool Error: {e}")
+        return {
             "google_phone": None,
             "google_address": None,
-            "google_specialty": None,
-            "source_reliability": 0.2
+            "source_reliability": 0.0,
+            "match_type": "Search Failed",
+            "error": str(e)
         }
-    ]
-
-    return random.choice(scenarios)

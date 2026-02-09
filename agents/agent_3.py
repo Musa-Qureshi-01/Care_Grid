@@ -57,6 +57,7 @@ def quality_agent(state):
     """
     Agent-3: Quality Assurance + Confidence Engine + Fraud Detection
     """
+    print(f"\n--- QA Agent Started for {state['provider'].get('name')} ---")
 
     provider = state["provider"]
     validated = state["validated_data"]
@@ -66,61 +67,74 @@ def quality_agent(state):
     addr_match = validated.get("address_match")
     spec_match = validated.get("specialty_match")
     license_id = validated.get("license")
-
+    
     phone_sim = validated.get("phone_similarity", 0.0)
     addr_sim = validated.get("address_similarity", 0.0)
 
     # -----------------------------
-    # 1) Weighted Confidence Scoring
+    # 1) Mathematical Scoring (Max 100)
     # -----------------------------
-    # Source weights (total ~= 1.0)
-    WEIGHTS = {
-        "csv": 0.10,
-        "google": 0.20,
-        "npi": 0.30,
-        "pdf": 0.40,
+    
+    score_components = {
+        "phone": 0,
+        "address": 0,
+        "license": 0,
+        "specialty": 0,
+        "education": 0,
+        "affiliations": 0
     }
 
-    # PHONE
-    phone_score = 0.0
+    # PHONE (Max 15%)
     if phone_match:
-        phone_score = 100 * (WEIGHTS["google"] + WEIGHTS["csv"])
-    elif phone_sim >= 0.6:
-        phone_score = 60 * WEIGHTS["google"]
-    elif phone_sim > 0:
-        phone_score = 30 * WEIGHTS["google"]
-
-    # ADDRESS
-    addr_score = 0.0
+        score_components["phone"] = 15
+    elif phone_sim >= 0.7:
+        score_components["phone"] = 10
+    elif phone_sim > 0.4:
+        score_components["phone"] = 5
+    
+    # ADDRESS (Max 25%)
     if addr_match:
-        addr_score = 100 * (WEIGHTS["google"] + WEIGHTS["csv"])
-    elif addr_sim >= 0.6:
-        addr_score = 60 * WEIGHTS["google"]
-    elif addr_sim > 0:
-        addr_score = 30 * WEIGHTS["google"]
-
-    # SPECIALTY
-    spec_score = 0.0
+        score_components["address"] = 25
+    elif addr_sim >= 0.7:
+        score_components["address"] = 15
+    elif addr_sim > 0.4:
+        score_components["address"] = 5
+        
+    # LICENSE (Max 25%) - The Trust Anchor
+    if license_id and license_id not in ["Not Found", "Error"]:
+        score_components["license"] = 25
+        
+    # SPECIALTY (Max 15%)
     if spec_match:
-        spec_score = 100 * WEIGHTS["npi"]
-    elif provider.get("specialty"):
-        spec_score = 40 * WEIGHTS["npi"]
+        score_components["specialty"] = 15
+    elif provider.get("specialty") and license_id and license_id not in ["Not Found", "Error"]:
+        # If NPI exists and we have a specialty, give partial credit
+        score_components["specialty"] = 10
+    
+    # EDUCATION (Max 10%)
+    has_edu = enriched.get("education") and enriched.get("education") != "Unknown"
+    if has_edu: 
+        score_components["education"] = 10
 
-    # LICENSE
-    lic_score = 0.0
-    if license_id:
-        lic_score = 100 * WEIGHTS["npi"]
-    # else 0
+    # AFFILIATIONS (Max 10%)
+    has_affil = enriched.get("affiliations") and len(enriched.get("affiliations", [])) > 0
+    if has_affil:
+        score_components["affiliations"] = 10
 
-    # OVERALL (0-100)
-    overall = round(phone_score + addr_score + spec_score + lic_score, 1)
-    overall = max(0.0, min(100.0, overall))
+    # TOTAL SCORE
+    overall = sum(score_components.values())
+    
+    # Log components for debugging
+    print(f"Scoring Components: {score_components}")
+    print(f"Total Score (Confidence): {overall}")
 
     confidence_scores = {
-        "phone": round(phone_score, 1),
-        "address": round(addr_score, 1),
-        "specialty": round(spec_score, 1),
-        "license": round(lic_score, 1),
+        "phone": score_components["phone"],
+        "address": score_components["address"],
+        "specialty": score_components["specialty"],
+        "license": score_components["license"],
+        "education": score_components["education"],
+        "affiliations": score_components["affiliations"],
         "overall": overall,
     }
 
@@ -131,9 +145,7 @@ def quality_agent(state):
         "phone_mismatch": not bool(phone_match),
         "address_mismatch": not bool(addr_match),
         "specialty_mismatch": not bool(spec_match),
-        "missing_phone_data": provider.get("phone") is None,
-        "missing_address_data": provider.get("address") is None,
-        "missing_license": license_id is None,
+        "missing_license": not license_id or license_id in ["Not Found", "Error"],
     }
 
     # -----------------------------
@@ -141,19 +153,35 @@ def quality_agent(state):
     # -----------------------------
     fraud = _fraud_signals(provider, validated, enriched)
     fraud_score = fraud["fraud_score"]
+    
+    # If NPI is missing, Fraud Score spikes
+    if not license_id or license_id in ["Not Found", "Error"]:
+        fraud_score += 30
 
     # -----------------------------
     # 4) Risk Classification
     # -----------------------------
-    if overall >= 80 and fraud_score < 30:
+    # Rule: >= 85 → LOW, 65–84 → MEDIUM, < 65 → HIGH
+    
+    risk = "unknown"
+    needs_manual = True
+    
+    if overall >= 85:
         risk = "LOW"
         needs_manual = False
-    elif overall >= 50 and fraud_score < 60:
+    elif overall >= 65:
         risk = "MEDIUM"
         needs_manual = True
     else:
         risk = "HIGH"
         needs_manual = True
+        
+    # Override: High Fraud Score always maps to High Risk
+    if fraud_score > 60:
+        risk = "HIGH"
+        needs_manual = True
+
+    print(f"Computed Risk: {risk} (Fraud Score: {fraud_score})")
 
     qa_output = {
         "confidence_scores": confidence_scores,

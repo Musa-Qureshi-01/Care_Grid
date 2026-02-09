@@ -12,6 +12,8 @@ from agents.agent_4 import directory_agent
 class ProviderState(dict):
     provider: dict
     validated_data: dict
+    google_result: dict
+    npi_result: dict
     enriched_data: dict
     quality_data: dict
     final_profile: dict
