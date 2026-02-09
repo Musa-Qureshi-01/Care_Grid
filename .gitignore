@@ -58,6 +58,8 @@ dist/
 
 # Allow providers.csv (needed for Streamlit demo)
 !data/providers.csv
+!data/final_results.csv
+!provider_system.db
 
 # Ignore all other generated data
 data/*.csv
