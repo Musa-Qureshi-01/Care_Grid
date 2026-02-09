@@ -37,4 +37,5 @@ tabulate
 # Research Agent Dependencies
 wikipedia
 duckduckgo-search
+google-generativeai
 

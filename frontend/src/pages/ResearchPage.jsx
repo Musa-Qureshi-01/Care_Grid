@@ -18,7 +18,8 @@ import { Button } from "../components/ui/button"
 import { Navbar } from "../components/Navbar"
 import { cn } from "../lib/utils"
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000"
+const VITE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
+const API_BASE = VITE_URL.endsWith('/api') ? VITE_URL.slice(0, -4) : VITE_URL
 
 // Tool icons mapping
 const toolIcons = {
