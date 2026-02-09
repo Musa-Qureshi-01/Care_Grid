@@ -2,7 +2,17 @@ import sqlite3
 import json
 from datetime import datetime
 
-DB_PATH = "provider_system.db"
+import os
+
+# Robust database path detection
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(BASE_DIR, "provider_system.db")
+
+# Fallback for alternative environments (like Vercel serverless)
+if not os.path.exists(DB_PATH):
+    alt_path = os.path.join(os.getcwd(), "provider_system.db")
+    if os.path.exists(alt_path):
+        DB_PATH = alt_path
 
 
 # ---------------------------------------------------

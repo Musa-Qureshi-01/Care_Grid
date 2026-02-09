@@ -12,7 +12,15 @@ from typing import List, Dict, Optional
 import os
 
 # Database path
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "research_memory.db")
+# Database path
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DB_PATH = os.path.join(BASE_DIR, "research_memory.db")
+
+# Fallback for alternative environments
+if not os.path.exists(DB_PATH):
+    alt_path = os.path.join(os.getcwd(), "research_memory.db")
+    if os.path.exists(alt_path):
+        DB_PATH = alt_path
 
 
 def get_connection():

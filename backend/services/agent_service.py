@@ -254,8 +254,14 @@ def load_providers_csv(path: str = None) -> list:
     """
     if path is None:
         # Navigate from backend/services to project root/data
-        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
-        path = os.path.join(project_root, "data", "providers.csv")
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        path = os.path.join(base_dir, "data", "providers.csv")
+        
+        # Fallback for Vercel/Docker/Serverless
+        if not os.path.exists(path):
+            alt_path = os.path.join(os.getcwd(), "data", "providers.csv")
+            if os.path.exists(alt_path):
+                path = alt_path
     
     if not os.path.exists(path):
         return []

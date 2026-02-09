@@ -7,9 +7,17 @@
             "config": {
                 "distDir": "frontend/dist"
             }
+        },
+        {
+            "src": "api/index.py",
+            "use": "@vercel/python"
         }
     ],
-    "routes": [
+    "rewrites": [
+        {
+            "src": "/api/(.*)",
+            "dest": "api/index.py"
+        },
         {
             "src": "/assets/(.*)",
             "dest": "/frontend/dist/assets/$1"
