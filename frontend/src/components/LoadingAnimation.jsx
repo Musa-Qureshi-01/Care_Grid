@@ -8,8 +8,8 @@ export function LoadingAnimation({ message = "Loading...", fullScreen = true }) 
 
     return (
         <div className={containerClass}>
-            {/* Animated background gradients */}
-            <div className="absolute inset-0 overflow-hidden">
+            {/* Animated background gradients - Hidden on small mobile for performance */}
+            <div className="absolute inset-0 overflow-hidden hidden sm:block">
                 <motion.div
                     animate={{
                         scale: [1, 1.2, 1],
@@ -115,20 +115,20 @@ export function LoadingAnimation({ message = "Loading...", fullScreen = true }) 
                         className="relative flex items-center justify-center w-32 h-32"
                     >
                         <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 shadow-2xl shadow-blue-500/50">
-                            <ShieldCheck className="h-12 w-12 text-white" />
+                            <ShieldCheck className="h-12 w-12 text-white relative z-10" />
 
-                            {/* Glow effect */}
+                            {/* Glow effect - Simplified on mobile */}
                             <motion.div
                                 animate={{
-                                    scale: [1, 1.5, 1],
-                                    opacity: [0.5, 0, 0.5]
+                                    scale: [1, 1.3, 1],
+                                    opacity: [0.3, 0.6, 0.3]
                                 }}
                                 transition={{
                                     duration: 2,
                                     repeat: Infinity,
-                                    ease: "easeOut"
+                                    ease: "easeInOut"
                                 }}
-                                className="absolute inset-0 rounded-2xl bg-blue-400 blur-xl"
+                                className="absolute inset-0 rounded-2xl bg-blue-400 blur-lg sm:blur-xl"
                             />
                         </div>
                     </motion.div>

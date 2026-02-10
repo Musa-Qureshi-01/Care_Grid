@@ -23,7 +23,7 @@ export function Hero() {
             />
 
             {/* Original blobs, moved outside the main content container if they were meant to be global background elements */}
-            {/* Secondary Indigo Blob */}
+            {/* Secondary Indigo Blob - Hidden on small mobile */}
             <motion.div
                 animate={{
                     y: [0, -50, 0],
@@ -34,10 +34,10 @@ export function Hero() {
                     repeat: Infinity,
                     ease: "easeInOut"
                 }}
-                className="absolute top-[10%] right-[-10%] w-[400px] lg:w-[800px] h-[400px] lg:h-[800px] bg-indigo-500/20 blur-[100px] rounded-full mix-blend-screen opacity-50"
+                className="absolute top-[10%] right-[-10%] w-[400px] lg:w-[800px] h-[400px] lg:h-[800px] bg-indigo-500/20 blur-[100px] rounded-full mix-blend-screen opacity-50 hidden sm:block"
             />
 
-            {/* Tertiary Teal/Cyan Blob for Depth */}
+            {/* Tertiary Teal/Cyan Blob for Depth - Hidden on small mobile */}
             <motion.div
                 animate={{
                     y: [0, 40, 0],
@@ -49,7 +49,7 @@ export function Hero() {
                     ease: "easeInOut",
                     delay: 1
                 }}
-                className="absolute bottom-[-10%] left-[30%] w-[600px] h-[600px] bg-teal-500/10 blur-[120px] rounded-full mix-blend-screen opacity-40"
+                className="absolute bottom-[-10%] left-[30%] w-[600px] h-[600px] bg-teal-500/10 blur-[120px] rounded-full mix-blend-screen opacity-40 hidden sm:block"
             />
 
             <div className="max-w-7xl mx-auto px-8 relative z-10 text-center">

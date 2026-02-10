@@ -307,9 +307,21 @@ html {
     /* Slower on mobile for better performance */
   }
 
-  /* Reduce blur on mobile for better performance */
+  /* Significantly reduce blur on mobile to prevent jank */
   [class*="blur-"] {
-    filter: blur(40px) !important;
+    filter: blur(8px) !important;
+  }
+
+  /* Hide heavy background blobs on smaller mobile devices */
+  @media (max-width: 480px) {
+    .bg-blue-500\/20,
+    .bg-indigo-500\/20,
+    .bg-purple-500\/10,
+    .bg-blue-500\/10,
+    .bg-indigo-500\/5,
+    .bg-teal-500\/10 {
+      display: none !important;
+    }
   }
 }
 
