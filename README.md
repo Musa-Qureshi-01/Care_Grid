@@ -1,93 +1,62 @@
-# CareGrid Provider Intelligence Platform
+# CareGrid — Provider Intelligence & Data Quality System
 
-##  Overview
-
-Healthcare payers face high operational costs and compliance risks due to incorrect provider information like outdated addresses, invalid phone numbers, expired licenses, or inaccurate specialties.
-
-This results in **Claim Denials**, **Poor Member Experience**, **Network Adequacy Issues**, and **Heavy Manual Verification Costs**.
-
----
 > ## [Preview](https://care-grid.vercel.app/)
----
+## Overview
 
-<h2 style="font-size:30px;">MultiAgent System</h2>
+Healthcare payers and networks rely on accurate provider directories for claims processing, regulatory compliance, and member experience.
+In practice, provider data frequently degrades due to outdated contact details, expired licenses, incorrect specialties, or inconsistent records across sources.
 
-| Agent | Role |
-| :--- | :--- |
-| **Agent 1 — Data Validation** | Validates phone, address, specialty using **Google Maps & NPI Registry**. |
-| **Agent 2 — Information Enrichment** | Extracts education, certifications, and affiliations. |
-| **Agent 3 — Quality Assurance** | Generates confidence scores, flags, and risk levels. |
-| **Agent 4 — Directory Management** | Produces final directory entries + CSV/JSON/PDF exports. |
+This results in:
 
-### ✨ Key Benefits
-- **Reduces manual QA by 70–80%**
-- **Achieves 90%+ provider accuracy**
-- **Batch engine handles thousands at once**
+* Claim denials and rework
+* Network adequacy risks
+* Poor member experience
+* High manual verification costs
+
+**CareGrid** is an **agent-driven provider intelligence system** that automates provider data validation, enrichment, risk scoring, and directory generation at scale.
 
 ---
 
-## 🛠️ Tech Stack
+## System Architecture
 
-### Frontend
-- **Framework**: React 19 (Vite)
-- **Styling**: Tailwind CSS, Framer Motion
-- **Components**: Lucide React, Shadcn/UI patterns
-- **State Management**: React Hooks
+CareGrid is designed as a **modular, agent-based pipeline** where each agent is responsible for a well-defined decision or verification task. Agents operate independently and can flag uncertainty, inconsistencies, or high-risk records for downstream handling.
 
-### Backend
-- **Core**: FastAPI (Python 3.10+)
-- **AI/ML**: LangChain, Google Gemini Pro
-- **Data Processing**: Pandas, NumPy
-- **Server**: Uvicorn (ASGI)
+### Agent Responsibilities
 
----
+| Agent                            | Role                                                                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Data Validation Agent**        | Validates phone numbers, addresses, and specialties using authoritative external sources (Google Maps, NPI Registry).    |
+| **Information Enrichment Agent** | Extracts and enriches provider education, certifications, and affiliations from trusted registries and public sources.   |
+| **Quality Assurance Agent**      | Assigns confidence scores, flags inconsistencies, and categorizes providers into risk tiers based on validation results. |
+| **Directory Management Agent**   | Generates finalized provider directory outputs (CSV, JSON, PDF) suitable for payer systems and audits.                   |
 
-## 🏗️ Local Development Setup
-
-### Prerequisites
-- Node.js (v18+)
-- Python (v3.10+)
-- Google Cloud API Key (Gemini)
-
-### 1. Backend Setup
-```bash
-cd backend
-python -m venv venv
-.\venv\Scripts\activate
-pip install -r requirements.txt
-```
-*Note: Create a `.env` file in the root with your API Key.*
-
-### 2. Frontend Setup
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The application will be available at:
-- **Frontend**: `http://localhost:5173`
-- **Backend API**: `http://localhost:8000`
+Agents can trigger re-validation or escalate records when confidence thresholds are not met.
 
 ---
 
-<h2 style="font-size:30px;">Dashboard Capabilities</h2>
+## Decision Logic & Scoring (High-Level)
 
-<p>Our Streamlit analytics dashboard provides a full visual understanding of provider data accuracy and risks.</p>
+* **Field-level validation** across multiple sources
+* **Confidence scoring** based on source agreement, recency, and completeness
+* **Risk classification** (Low / Medium / High) driven by:
 
-<ul style="font-size:18px;">
-  <li>✔ Confidence Distribution</li>
-  <li>✔ Risk Level Breakdown</li>
-  <li>✔ Average Confidence by Specialty</li>
-  <li>✔ Provider Risk Heatmap</li>
-  <li>✔ Confidence Heatmap</li>
-  <li>✔ Top 30 High-Risk / Priority Providers</li>
-  <li>✔ Automatic Email Generator for QA / Fraud Team</li>
-</ul>
+  * Missing critical fields
+  * Conflicting data across sources
+  * Expired or unverifiable credentials
 
-<div align="center">
-  <img src="assets/dashboard.png" width="750" alt="Dashboard Screenshot">
-</div>
+This design prioritizes **decision support**, not just data aggregation.
+
+---
+
+## Key Outcomes (Experimental)
+
+In controlled test datasets and internal validation runs, CareGrid demonstrated:
+
+* Significant reduction in manual QA steps for provider verification
+* High accuracy across validated provider attributes
+* Scalable batch processing for thousands of providers per run
+
+> Note: Metrics are experimental and depend on data quality, source coverage, and configuration thresholds.
 
 <hr>
 
@@ -96,97 +65,129 @@ The application will be available at:
 
 <hr>
 
-<h2 style="font-size:30px;">Compliance & Security</h2>
+## Dashboard & Analytics
 
-<p>Our system is designed to follow secure data-handling and compliance-friendly workflows:</p>
+CareGrid includes an analytics dashboard designed for **QA, compliance, and provider network teams** to prioritize verification workflows.
 
-<ul style="font-size:18px;">
-  <li>HIPAA-friendly execution pipeline</li>
-  <li>No PHI is stored after processing is complete</li>
-  <li>Local-only or controlled environment execution</li>
-  <li>Audit logs generated for every processed provider</li>
-  <li>Encrypted API access and key-based authentication</li>
-</ul>
+### Dashboard Capabilities
 
-<hr>
+* Confidence score distribution
+* Risk-level breakdown
+* Average confidence by specialty
+* Provider risk heatmap
+* Top high-risk / priority providers
+* Automated email drafts for QA or fraud review escalation
 
+---
 
-<h2 style="font-size:30px;">Project Documentation</h2>
+## Tech Stack
 
-<p style="font-size:18px;">
-This project includes complete documentation covering architecture, case studies, functional requirements, 
-and presentation workflow.  
-All documents are stored inside the <code>/docs</code> directory for easy navigation and reference.
-</p>
+### Frontend
 
-<h3 style="font-size:22px;">Available Documentation</h3>
+* React 19 (Vite)
+* Tailwind CSS
+* Framer Motion
+* Shadcn/UI patterns
+* Lucide Icons
 
-<ul style="font-size:18px; line-height:1.6;">
+### Backend
 
+* FastAPI (Python 3.10+)
+* LangChain
+* Google Gemini Pro
+* Pandas, NumPy
+* Uvicorn (ASGI)
 
-  <li>
-    <a href="docs/Case_Study.pdf">
-      <b>Case Study</b>
-    </a> 
-    – In-depth analysis of the problem, market, solution approach, and justification.
-  </li>
+---
 
-  <li>
-    <a href="docs/SRS_Document.pdf">
-      <b>SRS Document</b>
-    </a> 
-    – Software Requirements Specification, including functional & non-functional requirements.
-  </li>
+## Compliance & Security Considerations
 
-  <li>
-    <a href="docs/DOC_4_NAME">
-      <b>DOC_4_NAME</b>
-    </a> 
-    – Description of the fourth document.
-  </li>
+* Designed with **HIPAA-aligned data-handling principles**
+* No PHI stored after processing completion
+* Supports controlled or local execution environments
+* Audit logs generated per provider record
+* Encrypted API access with key-based authentication
 
-</ul>
+---
 
-<pre style="background:#111; color:#0f0; padding:15px; border-radius:8px; font-size:14px;">
-/docs/
-    ├── EY_Presentation.pdf
-    ├── Case_Study.pdf
-    ├── SRS_Document.pdf
-    └── DOC_4_NAME
-</pre>
+## Local Development Setup
 
-<hr>
+### Prerequisites
 
-<h2 style="font-size:30px;">Contributing</h2>
+* Node.js (v18+)
+* Python (v3.10+)
+* Google Cloud API Key (Gemini)
 
-<p>We welcome contributions that improve accuracy, performance, or add new capabilities to the pipeline.</p>
+### Backend
 
-<pre style="background:#111; color:#0f0; padding:15px; border-radius:8px; font-size:14px;">
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # Windows: .\venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create a `.env` file with your API key.
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+**Services**
+
+* Frontend: [http://localhost:5173](http://localhost:5173)
+* Backend API: [http://localhost:8000](http://localhost:8000)
+
+---
+
+## Documentation
+
+The `/docs` directory contains detailed project materials:
+
+* Case Study — problem context, market analysis, and solution rationale
+* SRS Document — functional and non-functional requirements
+* Architecture & Presentation Deck
+
+```
+/docs
+ ├── Case_Study.pdf
+ ├── SRS_Document.pdf
+ ├── EY_Presentation.pdf
+ └── DOC_4_NAME
+```
+
+---
+
+## Contribution Guidelines
+
+Contributions that improve:
+
+* validation accuracy
+* risk scoring logic
+* performance or scalability
+
+are welcome.
+
+```bash
 git checkout -b feature/new-feature
-git commit -m "Added advanced provider metric."
+git commit -m "Add enhanced provider validation logic"
 git push origin feature/new-feature
-</pre>
+```
 
-<p>Submit a pull request to contribute</p>
+Submit a pull request for review.
 
+---
+
+## Contact
+
+* Email: [1st](mailto:musaqureshi788code@gmail.com) | [2nd](mailto:musaqureshi0000@gmail.com)
+* LinkedIn: [Click](https://www.linkedin.com/in/musaqureshi)
+  
 <hr>
-
-<h2 style="font-size:30px;">⭐ Support</h2>
-
-<p>If you find this project useful, consider giving it a <b>⭐ Star</b>.  
-It helps improve visibility and motivates further development!</p>
-
-<hr>
-
-<h2 style="font-size:30px;">Contact</h2>
-
-<p>For queries, suggestions, or collaboration:</p>
-
-<ul style="font-size:18px;">
-  <li><b>Email:</b> musaqureshi788code@gmail.com / musaqureshi0000@gmail.com</li>
-  <li><b>LinkedIn:</b> <a href="https://linkedin.com/in/musa-qureshi">linkedin.com/in/musa-qureshi</a></li>
-</ul>
-
 <div align="center">
   <h3 style="margin-top:30px;">Made with ❤️ by Musa Qureshi</h3>
 </div>
